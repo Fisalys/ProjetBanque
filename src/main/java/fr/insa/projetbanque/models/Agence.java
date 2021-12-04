@@ -18,7 +18,7 @@ public class Agence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAgence;
     private String adresse;
-    @ManyToOne
+    @OneToMany
     private List<Client> client;
     private String code;
 }
