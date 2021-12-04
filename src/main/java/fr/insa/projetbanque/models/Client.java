@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -16,8 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 public class Client {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @ManyToMany
     private List<Agence> agence;
+    @ManyToMany
     private List<Compte> compte;
     private String nom;
     private String prenom;

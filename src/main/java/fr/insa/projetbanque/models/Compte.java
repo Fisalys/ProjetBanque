@@ -15,12 +15,16 @@ import java.util.List;
 @AllArgsConstructor
 public class Compte {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @ManyToMany
     private List<Client> client;
     @OneToMany
     private List<Carte> carte;
     private String statut; // externe / interne
     private float solde;
-    private String decouvert;
+    private boolean decouvert;
     private String IBAN;
+    @OneToMany
+    private List<Transaction> transactions;
 }

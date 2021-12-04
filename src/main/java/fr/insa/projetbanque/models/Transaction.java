@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -16,11 +15,12 @@ import java.util.List;
 @AllArgsConstructor
 public class Transaction {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private List<Compte> compte;
-    private List<Client> client;
     private String date;
+    @OneToOne
     private Compte cbenef;
+    @OneToOne
     private Compte cemett;
     private String methode; // virement ou carte
 }
