@@ -1,8 +1,13 @@
 package fr.insa.projetbanque.DTO;
 
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
-public class AgenceDTO {
+import java.io.Serializable;
+import java.util.List;
+@Getter
+@Setter
+public class AgenceDTO implements Serializable {
     private String adresse;
     private String code;
     private List<Integer> listIdClient;

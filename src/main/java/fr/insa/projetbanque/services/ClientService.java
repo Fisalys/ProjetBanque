@@ -16,6 +16,8 @@ import java.util.List;
 @Service
 public class ClientService extends CommonService{
 
+    public static final String CLIENT_NOT_FOUND = "Client non trouvé avec l'id : %s";
+
     @Autowired
     ClientRepository clientRepository;
     @Autowired
@@ -59,5 +61,11 @@ public class ClientService extends CommonService{
 
         if(!e.getMessages().isEmpty())
             throw e;
+    }
+
+    public Client getClientById(Integer id) throws ProcessExeption
+    {
+        Client c = clientRepository.findById(id).orElseThrow(()->new ProcessExeption(String.format(CLIENT_NOT_FOUND, id)));
+        return c;
     }
 }
