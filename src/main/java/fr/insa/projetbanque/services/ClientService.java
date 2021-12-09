@@ -18,8 +18,16 @@ public class ClientService extends CommonService{
 
     public static final String CLIENT_NOT_FOUND = "Client non trouvé avec l'id : %s";
 
+
     @Autowired
     ClientRepository clientRepository;
+
+    public Client getClientById(Integer id) throws ProcessExeption
+    {
+        Client client = clientRepository.findById(id).orElseThrow(()-> new ProcessExeption(String.format(CLIENT_NOT_FOUND, id)));
+        return client;
+    }
+
     @Autowired
     AgenceService agenceService;
 
@@ -63,9 +71,4 @@ public class ClientService extends CommonService{
             throw e;
     }
 
-    public Client getClientById(Integer id) throws ProcessExeption
-    {
-        Client c = clientRepository.findById(id).orElseThrow(()->new ProcessExeption(String.format(CLIENT_NOT_FOUND, id)));
-        return c;
-    }
 }

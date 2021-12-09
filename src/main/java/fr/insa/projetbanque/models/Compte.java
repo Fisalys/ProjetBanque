@@ -20,6 +20,7 @@ public class Compte {
     private List<Client> client;
     @OneToMany
     private List<Carte> carte;
+    private String numero;
     private String statut; // externe / interne
     private float solde;
     private boolean decouvert;

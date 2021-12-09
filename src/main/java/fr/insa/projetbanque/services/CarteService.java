@@ -18,6 +18,14 @@ public class CarteService extends CommonService{
     @Autowired
     CompteService compteService;
 
+    private static final String CARTE_NOT_FOUND = "Carte non trouvée avec l'id : %s";
+
+    public Carte getCarteById(Integer id) throws ProcessExeption
+    {
+        Carte carte = carteRepository.findById(id).orElseThrow(()-> new ProcessExeption(String.format(CARTE_NOT_FOUND, id)));
+        return carte;
+    }
+
     public Carte saveCarte(CarteDTO carteToCreate) throws ProcessExeption {
         Compte compte = compteService.getCompteById(carteToCreate.getIdCompte());
 
