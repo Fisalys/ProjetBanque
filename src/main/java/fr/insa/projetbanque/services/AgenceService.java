@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AgenceService extends CommonService{
@@ -64,6 +65,19 @@ public class AgenceService extends CommonService{
             throw e;
     }
 
-
+    public List<AgenceDTO> getAllAgence(){
+        List<Agence> list = this.agenceRepository
+                .findAll();
+        List<AgenceDTO> dto = new ArrayList<>();
+        for(Agence a :list)
+        {
+            AgenceDTO d = AgenceDTO.builder()
+                    .adresse(a.getAdresse())
+                    .code(a.getCode())
+                    .build();
+            dto.add(d);
+        }
+        return dto;
+    }
 
 }
