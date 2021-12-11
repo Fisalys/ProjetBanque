@@ -21,8 +21,6 @@ public class CompteService extends CommonService{
     @Autowired
     ClientService clientService;
     @Autowired
-    TransactionService transactionService;
-    @Autowired
     AgenceRepository agenceRepository;
 
     private static final String COMPTE_NOT_FOUND = "Compte non trouvée avec l'id : %s";
@@ -57,7 +55,18 @@ public class CompteService extends CommonService{
 
     public String creerNumero(Compte c)
     {
-        return null;
+        String num = String.valueOf(c.getId());
+        if(num.length()==1) num = "0000000000".concat(num);
+        if(num.length()==2) num = "000000000".concat(num);
+        if(num.length()==3) num = "00000000".concat(num);
+        if(num.length()==4) num = "0000000".concat(num);
+        if(num.length()==5) num = "000000".concat(num);
+        if(num.length()==6) num = "00000".concat(num);
+        if(num.length()==7) num = "0000".concat(num);
+        if(num.length()==8) num = "000".concat(num);
+        if(num.length()==9) num = "00".concat(num);
+        if(num.length()==10)num = "0".concat(num);
+        return num;
     }
 
     public String creerIBAN(CompteDTO compteDTO) throws ProcessExeption {
