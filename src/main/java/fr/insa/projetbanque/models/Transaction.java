@@ -17,9 +17,10 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String date;
-    @OneToOne
+    @ManyToOne
     private Compte cbenef;
-    @OneToOne
+    @ManyToOne
     private Compte cemett;
+    private float montant;
     private String methode; // virement ou carte
 }

@@ -18,7 +18,7 @@ public class Compte {
     private int id;
     @ManyToMany
     private List<Client> client;
-    @OneToMany
+    @OneToMany(mappedBy = "compte")
     private List<Carte> carte;
     private String numero;
     private String statut; // externe / interne

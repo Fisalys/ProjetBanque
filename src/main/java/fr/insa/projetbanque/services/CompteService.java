@@ -38,9 +38,6 @@ public class CompteService extends CommonService{
         for(int i : CompteToCreate.getListIdClient())
             client.add(clientService.getClientById(i));
 
-        List<Transaction> transaction = new ArrayList<>();
-        for(int k : CompteToCreate.getListIdTransaction())
-            transaction.add(transactionService.getTransactionById(k));
 
         Compte c = Compte.builder()
                 .client(client)
@@ -48,7 +45,7 @@ public class CompteService extends CommonService{
                 .statut(CompteToCreate.getStatut())
                 .solde(CompteToCreate.getSolde())
                 .decouvert(false)
-                .transactions(transaction)
+                .transactions(null)
                 .build();
 
         CompteToCreate.setNumero(creerNumero(c));
