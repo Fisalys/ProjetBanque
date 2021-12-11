@@ -30,7 +30,7 @@ public class CompteService extends CommonService{
         return compte;
     }
 
-    public Compte saveCompte(CompteDTO CompteToCreate) throws ProcessExeption
+    public CompteDTO saveCompte(CompteDTO CompteToCreate) throws ProcessExeption
     {
         List<Client> client = new ArrayList<>();
         for(int i : CompteToCreate.getListIdClient())
@@ -49,8 +49,10 @@ public class CompteService extends CommonService{
         CompteToCreate.setNumero(creerNumero(c));
         c.setNumero(CompteToCreate.getNumero());
         c.setIBAN(creerIBAN(CompteToCreate));
-
-        return this.compteRepository.save(c);
+        this.compteRepository.save(c);
+        CompteToCreate.setId(c.getId());
+        CompteToCreate.setIBAN(c.getIBAN());
+        return CompteToCreate;
     }
 
     public String creerNumero(Compte c)
@@ -86,22 +88,26 @@ public class CompteService extends CommonService{
         return IBAN;
     }
 
-    public void validateClientModel(CompteDTO compteToCreate) throws NotValidExeption
+    public void validateCompteModel(CompteDTO compteToCreate) throws NotValidExeption
     {
         NotValidExeption e = new NotValidExeption();
 
-        if(compteToCreate == null)
+        if(compteToCreate == null) {
+            System.out.println("testNull");
             e.getMessages().add("CompteModel : Null");
-        if(compteToCreate.getListIdCarte().size() > 2)
-            e.getMessages().add("2 cartes maximum");
-        if(compteToCreate.getStatut() == null || compteToCreate.getStatut().isBlank())
+        }
+        if(compteToCreate.getStatut() == null || compteToCreate.getStatut().isBlank()) {
             e.getMessages().add("statut est vide");
-        if(!compteToCreate.getStatut().equals("externe") || !compteToCreate.getStatut().equals("interne"))
+            System.out.println("testStatus");
+        }
+        if(!compteToCreate.getStatut().equals("externe") && !compteToCreate.getStatut().equals("interne")) {
             e.getMessages().add("statut incorrect");
-        if(compteToCreate.getSolde() < 0)
+            System.out.println("testSpagethi");
+        }
+        if(compteToCreate.getSolde() < 0) {
             e.getMessages().add("solde incorrect");
-        if(compteToCreate.getIBAN() == null || compteToCreate.getIBAN().isBlank())
-            e.getMessages().add("IBAN est vide");
+            System.out.println("testFourchette");
+        }
         if(!e.getMessages().isEmpty())
             throw e;
     }

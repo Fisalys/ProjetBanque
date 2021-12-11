@@ -5,7 +5,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class ClientDTO implements Serializable {
-
+    private Integer id;
     private String nom;
     private String prenom;
     private int age;

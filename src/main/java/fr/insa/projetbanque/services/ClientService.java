@@ -29,7 +29,7 @@ public class ClientService extends CommonService{
     }
 
 
-    public Client saveClient(ClientDTO ClientToCreate) throws ProcessExeption
+    public ClientDTO saveClient(ClientDTO ClientToCreate) throws ProcessExeption
     {
         Client c = Client.builder()
                 .nom(ClientToCreate.getNom())
@@ -39,7 +39,9 @@ public class ClientService extends CommonService{
                 .mail(ClientToCreate.getMail())
                 .adresse(ClientToCreate.getAdresse())
                 .build();
-        return this.clientRepository.save(c);
+        this.clientRepository.save(c);
+        ClientToCreate.setId(c.getId() );
+        return ClientToCreate;
     }
 
     public void validateClientModel(ClientDTO clientToCreate) throws NotValidExeption

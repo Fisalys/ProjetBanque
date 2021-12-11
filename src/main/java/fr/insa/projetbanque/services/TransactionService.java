@@ -47,7 +47,7 @@ public class TransactionService {
         if(transactionDTO == null)
             e.getMessages().add("transaction est null");
         Compte emett =  compteService.getCompteById(transactionDTO.getEmettId());
-
+        Compte benef = compteService.getCompteById(transactionDTO.getBenefId());
         if(transactionDTO.getDate() == null)
             e.getMessages().add("date est vide");
         if(transactionDTO.getMontant() == 0)
@@ -55,9 +55,11 @@ public class TransactionService {
         if(transactionDTO.getMontant() > emett.getSolde() && !emett.isDecouvert())
             e.getMessages().add("Montant superieur au solde");
         if(transactionDTO.getMethode() == null || transactionDTO.getMethode().isBlank())
-            e.getMessages().add("Methdoe est vide");
+            e.getMessages().add("Methode est vide");
         if(!transactionDTO.getMethode().equals("virement") || !transactionDTO.getMethode().equals("carte"))
             e.getMessages().add("methode inconnu");
+        if(benef.getStatut().equals("externe"))
+            e.getMessages().add("compte externe");
 
         if(!e.getMessages().isEmpty())
             throw e;

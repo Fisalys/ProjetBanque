@@ -11,11 +11,10 @@ import java.util.List;
 @Setter
 @Builder
 public class CompteDTO implements Serializable {
+    private Integer id;
     private String numero;
     private List<Integer> listIdClient;
-    private List<Integer> listIdCarte;
     private String statut; // externe / interne
-    private float solde;
+    private int solde;
     private String IBAN;
-    private List<Integer> listIdTransaction;
 }

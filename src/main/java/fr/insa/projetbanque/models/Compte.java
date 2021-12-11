@@ -22,7 +22,7 @@ public class Compte {
     private List<Carte> carte;
     private String numero;
     private String statut; // externe / interne
-    private float solde;
+    private int solde;
     private boolean decouvert;
     private String IBAN;
     @OneToMany
