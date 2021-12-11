@@ -3,6 +3,7 @@ package fr.insa.projetbanque.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String date;
+    private Date date;
     @ManyToOne
     private Compte cbenef;
     @ManyToOne
