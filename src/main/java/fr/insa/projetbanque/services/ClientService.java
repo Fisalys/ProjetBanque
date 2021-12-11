@@ -28,14 +28,9 @@ public class ClientService extends CommonService{
         return client;
     }
 
-    @Autowired
-    AgenceService agenceService;
 
     public Client saveClient(ClientDTO ClientToCreate) throws ProcessExeption
     {
-        Agence agence = agenceService.getAgenceById(ClientToCreate.getIdAgence());
-        List<Agence> list = new ArrayList<>();
-        list.add(agence);
         Client c = Client.builder()
                 .nom(ClientToCreate.getNom())
                 .prenom(ClientToCreate.getPrenom())
@@ -43,7 +38,6 @@ public class ClientService extends CommonService{
                 .tel(ClientToCreate.getTel())
                 .mail(ClientToCreate.getMail())
                 .adresse(ClientToCreate.getAdresse())
-                .agence(list)
                 .build();
         return this.clientRepository.save(c);
     }

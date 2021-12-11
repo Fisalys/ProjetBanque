@@ -22,7 +22,5 @@ public class Client {
     private String mail;
     private String adresse;
     @ManyToMany
-    private List<Agence> agence;
-    @ManyToMany
     private List<Compte> compte;
 }

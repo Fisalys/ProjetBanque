@@ -5,6 +5,7 @@ import fr.insa.projetbanque.DTO.CompteDTO;
 import fr.insa.projetbanque.exeption.NotValidExeption;
 import fr.insa.projetbanque.exeption.ProcessExeption;
 import fr.insa.projetbanque.models.*;
+import fr.insa.projetbanque.repositories.AgenceRepository;
 import fr.insa.projetbanque.repositories.ClientRepository;
 import fr.insa.projetbanque.repositories.CompteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class CompteService extends CommonService{
     @Autowired
     ClientService clientService;
     @Autowired
-    CarteService carteService;
-    @Autowired
     TransactionService transactionService;
+    @Autowired
+    AgenceRepository agenceRepository;
 
     private static final String COMPTE_NOT_FOUND = "Compte non trouvée avec l'id : %s";
 
@@ -37,17 +38,13 @@ public class CompteService extends CommonService{
         for(int i : CompteToCreate.getListIdClient())
             client.add(clientService.getClientById(i));
 
-        List<Carte> carte = new ArrayList<>();
-        for(int j : CompteToCreate.getListIdCarte())
-            carte.add(carteService.getCarteById(j));
-
         List<Transaction> transaction = new ArrayList<>();
         for(int k : CompteToCreate.getListIdTransaction())
             transaction.add(transactionService.getTransactionById(k));
 
         Compte c = Compte.builder()
                 .client(client)
-                .carte(carte)
+                .carte(null)
                 .statut(CompteToCreate.getStatut())
                 .solde(CompteToCreate.getSolde())
                 .decouvert(false)
@@ -72,12 +69,12 @@ public class CompteService extends CommonService{
         String IBAN = "FR76";
         IBAN =  IBAN.concat(codeBanque);
         Client c = clientService.getClientById(compteDTO.getListIdClient().get(0));
-        IBAN = IBAN.concat(c.getAgence().get(0).getCode());
+        IBAN = IBAN.concat(agenceRepository.findAgenceByClient(c).get(0).getCode());
         IBAN = IBAN.concat(compteDTO.getNumero());
 
         int rib = 97 - ((
                   89 * Integer.parseInt(codeBanque)
-                + 15 * Integer.parseInt(c.getAgence().get(0).getCode())
+                + 15 * Integer.parseInt(agenceRepository.findAgenceByClient(c).get(0).getCode())
                 + 3  * Integer.parseInt(compteDTO.getNumero())) % 97);
         IBAN = IBAN.concat(String.valueOf(rib));
         return IBAN;
