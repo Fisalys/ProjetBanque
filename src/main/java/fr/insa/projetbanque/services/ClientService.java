@@ -67,4 +67,35 @@ public class ClientService extends CommonService{
             throw e;
     }
 
+    public ClientDTO getClientByNomAndPrenom(String nom, String prenom) throws ProcessExeption {
+        Client c = clientRepository.findClientByNomAndPrenom(nom, prenom);
+        if(c == null)
+            throw new ProcessExeption(String.format(CLIENT_NOT_FOUND, nom));
+        ClientDTO clientDTO = ClientDTO.builder()
+                .nom(c.getNom())
+                .prenom(c.getPrenom())
+                .adresse(c.getAdresse())
+                .mail(c.getMail())
+                .id(c.getId())
+                .age(c.getAge())
+                .tel(c.getTel())
+                .build();
+        return clientDTO;
+    }
+    public ClientDTO getClientByMail(String mail) throws ProcessExeption {
+        Client c = clientRepository.findClientByMail(mail);
+        if(c == null)
+            throw new ProcessExeption(String.format(CLIENT_NOT_FOUND, mail));
+        ClientDTO clientDTO = ClientDTO.builder()
+                .nom(c.getNom())
+                .prenom(c.getPrenom())
+                .adresse(c.getAdresse())
+                .mail(c.getMail())
+                .id(c.getId())
+                .age(c.getAge())
+                .tel(c.getTel())
+                .build();
+        return clientDTO;
+    }
+
 }

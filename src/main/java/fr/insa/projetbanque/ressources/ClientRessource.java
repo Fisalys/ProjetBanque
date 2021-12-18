@@ -4,10 +4,7 @@ import fr.insa.projetbanque.DTO.ClientDTO;
 import fr.insa.projetbanque.exeption.ProcessExeption;
 import fr.insa.projetbanque.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("clients")
@@ -22,5 +19,15 @@ public class ClientRessource {
         return clientService.saveClient(clientToCreate);
     }
 
+    @GetMapping
+    public ClientDTO getClientByNomAndPrenom(@RequestParam String nom, @RequestParam String prenom) throws ProcessExeption {
+        return clientService.getClientByNomAndPrenom(nom, prenom);
 
+    }
+
+    @GetMapping("/mail")
+    public ClientDTO getClientByMail(@RequestParam String mail) throws ProcessExeption {
+        return clientService.getClientByMail(mail);
+
+    }
 }

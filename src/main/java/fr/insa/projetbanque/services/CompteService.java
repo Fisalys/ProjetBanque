@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CompteService extends CommonService{
@@ -27,6 +28,29 @@ public class CompteService extends CommonService{
 
     public Compte getCompteById(Integer id) throws ProcessExeption {
         Compte compte = compteRepository.findById(id).orElseThrow(()-> new ProcessExeption(String.format(COMPTE_NOT_FOUND, id)));
+        return compte;
+    }
+
+    public CompteDTO getCompteByIBAN(String Iban) throws ProcessExeption {
+        Compte compte = compteRepository.findCompteByIBAN(Iban);
+        if(compte == null)
+            throw new ProcessExeption(String.format(COMPTE_NOT_FOUND, Iban));
+        CompteDTO dto = CompteDTO.builder()
+                .IBAN(compte.getIBAN())
+                .id(compte.getId())
+                .numero(compte.getNumero())
+                .solde(compte.getSolde())
+                .build();
+        return dto;
+    }
+
+
+
+    public Compte getCompteByNumero(String numero) throws ProcessExeption
+    {
+        Compte compte = compteRepository.findCompteByNumero(numero);
+        if(compte == null)
+            throw new ProcessExeption(String.format(COMPTE_NOT_FOUND, numero));
         return compte;
     }
 
@@ -57,18 +81,13 @@ public class CompteService extends CommonService{
 
     public String creerNumero(Compte c)
     {
-        String num = String.valueOf(c.getId());
-        if(num.length()==1) num = "0000000000".concat(num);
-        if(num.length()==2) num = "000000000".concat(num);
-        if(num.length()==3) num = "00000000".concat(num);
-        if(num.length()==4) num = "0000000".concat(num);
-        if(num.length()==5) num = "000000".concat(num);
-        if(num.length()==6) num = "00000".concat(num);
-        if(num.length()==7) num = "0000".concat(num);
-        if(num.length()==8) num = "000".concat(num);
-        if(num.length()==9) num = "00".concat(num);
-        if(num.length()==10)num = "0".concat(num);
-        return num;
+        Long leftLimit = 10000000000L;
+        Long rightLimit = 99999999999L;
+        long generatedLong = (long) (Math.random() * (rightLimit - leftLimit));
+        String temp = Long.toString(generatedLong);
+        if(temp.length() == 10)
+            temp = temp+"0";
+        return temp;
     }
 
     public String creerIBAN(CompteDTO compteDTO) throws ProcessExeption {
@@ -80,11 +99,15 @@ public class CompteService extends CommonService{
         IBAN = IBAN.concat(agenceRepository.findAgenceByClient(c).get(0).getCode());
         IBAN = IBAN.concat(compteDTO.getNumero());
 
-        int rib = 97 - ((
+        long rib = 97 - ((
                   89 * Integer.parseInt(codeBanque)
                 + 15 * Integer.parseInt(agenceRepository.findAgenceByClient(c).get(0).getCode())
-                + 3  * Integer.parseInt(compteDTO.getNumero())) % 97);
-        IBAN = IBAN.concat(String.valueOf(rib));
+                + 3  * Long.parseLong(compteDTO.getNumero())) % 97);
+        String temp = String.valueOf(rib);
+        if(temp.length() == 1)
+            temp = "0" + temp;
+        IBAN = IBAN.concat(temp);
+        System.out.println(rib);
         return IBAN;
     }
 
@@ -111,5 +134,20 @@ public class CompteService extends CommonService{
         if(!e.getMessages().isEmpty())
             throw e;
     }
-    
+
+    public CompteDTO modifierCompte(CompteDTO compteDTO) throws ProcessExeption {
+        Compte compte = compteRepository.findCompteByNumero(compteDTO.getNumero());
+        compte.setSolde(compteDTO.getSolde());
+        compteRepository.save(compte);
+        return compteDTO;
+
+    }
+
+    public void deleteCompte(String numero) throws ProcessExeption {
+        Compte compte = compteRepository.findCompteByNumero(numero);
+        if(compte == null)
+            throw new ProcessExeption(String.format(COMPTE_NOT_FOUND, numero));
+        compteRepository.delete(compte);
+    }
+
 }

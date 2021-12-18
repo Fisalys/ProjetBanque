@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 @Builder
 public class AgenceDTO implements Serializable {
+    private Integer id;
     private String adresse;
     private String code;
     private List<Integer> listIdClient;

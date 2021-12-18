@@ -30,7 +30,7 @@ public class AgenceService extends CommonService{
         return agence;
     }
 
-    public Agence saveAgence(AgenceDTO agenceToCreate) throws ProcessExeption
+    public AgenceDTO saveAgence(AgenceDTO agenceToCreate) throws ProcessExeption
     {
         List<Client> list = new ArrayList<>();
         for(Integer i:agenceToCreate.getListIdClient())
@@ -43,7 +43,9 @@ public class AgenceService extends CommonService{
                 .code(agenceToCreate.getCode())
                 .client(list)
                 .build();
-        return agenceRepository.save(a);
+        agenceRepository.save(a);
+        agenceToCreate.setId(a.getIdAgence());
+        return agenceToCreate;
     }
 
     public void validateAgenceModel(AgenceDTO agenceToCreate) throws NotValidExeption
