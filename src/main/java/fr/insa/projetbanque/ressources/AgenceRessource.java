@@ -1,8 +1,7 @@
 package fr.insa.projetbanque.ressources;
 
-import fr.insa.projetbanque.DTO.AgenceDTO;
-import fr.insa.projetbanque.exeption.ProcessExeption;
-import fr.insa.projetbanque.models.Agence;
+import fr.insa.projetbanque.dto.AgenceDTO;
+import fr.insa.projetbanque.exeptions.ProcessExeption;
 import fr.insa.projetbanque.services.AgenceService;
 import fr.insa.projetbanque.services.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;

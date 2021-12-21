@@ -1,9 +1,7 @@
 package fr.insa.projetbanque.ressources;
 
-import fr.insa.projetbanque.DTO.CompteDTO;
-import fr.insa.projetbanque.DTO.TransactionDTO;
-import fr.insa.projetbanque.exeption.ProcessExeption;
-import fr.insa.projetbanque.models.Transaction;
+import fr.insa.projetbanque.dto.TransactionDTO;
+import fr.insa.projetbanque.exeptions.ProcessExeption;
 import fr.insa.projetbanque.services.CommonService;
 import fr.insa.projetbanque.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;

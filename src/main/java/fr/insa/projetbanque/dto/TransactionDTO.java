@@ -1,6 +1,5 @@
-package fr.insa.projetbanque.DTO;
+package fr.insa.projetbanque.dto;
 
-import fr.insa.projetbanque.models.Compte;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package fr.insa.projetbanque.DTO;
+package fr.insa.projetbanque.dto;
 
 import lombok.Builder;
 import lombok.Getter;

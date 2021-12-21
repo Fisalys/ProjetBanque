@@ -1,7 +1,7 @@
 package fr.insa.projetbanque.services;
 
-import fr.insa.projetbanque.exeption.NotValidExeption;
-import fr.insa.projetbanque.exeption.ProcessExeption;
+import fr.insa.projetbanque.exeptions.NotValidExeption;
+import fr.insa.projetbanque.exeptions.ProcessExeption;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

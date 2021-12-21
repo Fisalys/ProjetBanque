@@ -1,4 +1,4 @@
-package fr.insa.projetbanque.exeption;
+package fr.insa.projetbanque.exeptions;
 
 import lombok.Getter;
 import lombok.Setter;

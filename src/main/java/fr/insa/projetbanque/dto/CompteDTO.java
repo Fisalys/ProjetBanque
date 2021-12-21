@@ -1,4 +1,4 @@
-package fr.insa.projetbanque.DTO;
+package fr.insa.projetbanque.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -6,12 +6,15 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
+
 @Getter
 @Setter
 @Builder
-public class AgenceDTO implements Serializable {
+public class CompteDTO implements Serializable {
     private Integer id;
-    private String adresse;
-    private String code;
+    private String numero;
     private List<Integer> listIdClient;
+    private String statut; // externe / interne
+    private int solde;
+    private String iban;
 }

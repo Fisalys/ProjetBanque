@@ -1,13 +1,11 @@
 package fr.insa.projetbanque.services;
 
-import fr.insa.projetbanque.DTO.CompteDTO;
-import fr.insa.projetbanque.DTO.TransactionDTO;
-import fr.insa.projetbanque.exeption.NotValidExeption;
-import fr.insa.projetbanque.exeption.ProcessExeption;
-import fr.insa.projetbanque.models.Agence;
+import fr.insa.projetbanque.dto.CompteDTO;
+import fr.insa.projetbanque.dto.TransactionDTO;
+import fr.insa.projetbanque.exeptions.NotValidExeption;
+import fr.insa.projetbanque.exeptions.ProcessExeption;
 import fr.insa.projetbanque.models.Compte;
 import fr.insa.projetbanque.models.Transaction;
-import fr.insa.projetbanque.repositories.AgenceRepository;
 import fr.insa.projetbanque.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

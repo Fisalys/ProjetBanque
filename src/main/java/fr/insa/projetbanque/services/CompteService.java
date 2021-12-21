@@ -1,19 +1,16 @@
 package fr.insa.projetbanque.services;
 
-import fr.insa.projetbanque.DTO.ClientDTO;
-import fr.insa.projetbanque.DTO.CompteDTO;
-import fr.insa.projetbanque.exeption.NotValidExeption;
-import fr.insa.projetbanque.exeption.ProcessExeption;
+import fr.insa.projetbanque.dto.CompteDTO;
+import fr.insa.projetbanque.exeptions.NotValidExeption;
+import fr.insa.projetbanque.exeptions.ProcessExeption;
 import fr.insa.projetbanque.models.*;
 import fr.insa.projetbanque.repositories.AgenceRepository;
-import fr.insa.projetbanque.repositories.ClientRepository;
 import fr.insa.projetbanque.repositories.CompteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class CompteService extends CommonService{
@@ -31,12 +28,12 @@ public class CompteService extends CommonService{
         return compte;
     }
 
-    public CompteDTO getCompteByIBAN(String Iban) throws ProcessExeption {
-        Compte compte = compteRepository.findCompteByIBAN(Iban);
+    public CompteDTO getCompteByIban(String Iban) throws ProcessExeption {
+        Compte compte = compteRepository.findCompteByIban(Iban);
         if(compte == null)
             throw new ProcessExeption(String.format(COMPTE_NOT_FOUND, Iban));
         CompteDTO dto = CompteDTO.builder()
-                .IBAN(compte.getIBAN())
+                .iban(compte.getIban())
                 .id(compte.getId())
                 .numero(compte.getNumero())
                 .solde(compte.getSolde())
@@ -72,10 +69,10 @@ public class CompteService extends CommonService{
 
         CompteToCreate.setNumero(creerNumero(c));
         c.setNumero(CompteToCreate.getNumero());
-        c.setIBAN(creerIBAN(CompteToCreate));
+        c.setIban(creerIban(CompteToCreate));
         this.compteRepository.save(c);
         CompteToCreate.setId(c.getId());
-        CompteToCreate.setIBAN(c.getIBAN());
+        CompteToCreate.setIban(c.getIban());
         return CompteToCreate;
     }
 
@@ -87,7 +84,7 @@ public class CompteService extends CommonService{
         return Long.toString(generatedLong);
     }
 
-    public String creerIBAN(CompteDTO compteDTO) throws ProcessExeption {
+    public String creerIban(CompteDTO compteDTO) throws ProcessExeption {
 
         String codeBanque = "30076";
         String IBAN = "FR76";

@@ -24,7 +24,7 @@ public class Compte {
     private String statut; // externe / interne
     private int solde;
     private boolean decouvert;
-    private String IBAN;
+    private String iban;
     @OneToMany(mappedBy = "cbenef")
     private List<Transaction> transactionsBenef;
     @OneToMany(mappedBy = "cemett")

@@ -1,14 +1,12 @@
 package fr.insa.projetbanque.ressources;
 
-import fr.insa.projetbanque.DTO.CompteDTO;
-import fr.insa.projetbanque.exeption.ProcessExeption;
+import fr.insa.projetbanque.dto.CompteDTO;
+import fr.insa.projetbanque.exeptions.ProcessExeption;
 import fr.insa.projetbanque.models.Compte;
 import fr.insa.projetbanque.services.CommonService;
 import fr.insa.projetbanque.services.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("comptes")
@@ -25,8 +23,8 @@ public class CompteRessource extends CommonService {
     }
 
     @GetMapping
-    public CompteDTO getCompteByIBAN(@RequestParam String iban) throws Exception {
-        return compteService.getCompteByIBAN(iban);
+    public CompteDTO getCompteByIban(@RequestParam String iban) throws Exception {
+        return compteService.getCompteByIban(iban);
     }
 
     @GetMapping("{Numero}")
@@ -35,7 +33,7 @@ public class CompteRessource extends CommonService {
         CompteDTO dto = CompteDTO.builder()
                 .numero(compte.getNumero())
                 .solde(compte.getSolde())
-                .IBAN(compte.getIBAN())
+                .iban(compte.getIban())
                 .id(compte.getId())
                 .build();
         return dto;

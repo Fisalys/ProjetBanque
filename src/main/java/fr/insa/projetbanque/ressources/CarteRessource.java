@@ -1,7 +1,7 @@
 package fr.insa.projetbanque.ressources;
 
-import fr.insa.projetbanque.DTO.CarteDTO;
-import fr.insa.projetbanque.exeption.ProcessExeption;
+import fr.insa.projetbanque.dto.CarteDTO;
+import fr.insa.projetbanque.exeptions.ProcessExeption;
 import fr.insa.projetbanque.services.CarteService;
 import fr.insa.projetbanque.services.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
