@@ -3,12 +3,13 @@ package fr.insa.projetbanque.ressources;
 import fr.insa.projetbanque.DTO.ClientDTO;
 import fr.insa.projetbanque.exeption.ProcessExeption;
 import fr.insa.projetbanque.services.ClientService;
+import fr.insa.projetbanque.services.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("clients")
-public class ClientRessource {
+public class ClientRessource extends CommonService {
     @Autowired
     ClientService clientService;
 

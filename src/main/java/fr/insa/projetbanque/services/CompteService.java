@@ -101,8 +101,7 @@ public class CompteService extends CommonService{
                 + 15 * Integer.parseInt(agenceRepository.findAgenceByClient(c).get(0).getCode())
                 + 3  * Long.parseLong(compteDTO.getNumero())) % 97);
         String temp = String.valueOf(rib);
-        if(temp.length() == 1)
-            temp = "0" + temp;
+        if(temp.length() == 1) temp = "0" + temp;
         IBAN = IBAN.concat(temp);
         System.out.println(rib);
         return IBAN;

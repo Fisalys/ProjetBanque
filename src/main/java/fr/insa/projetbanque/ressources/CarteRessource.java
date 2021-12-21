@@ -3,12 +3,13 @@ package fr.insa.projetbanque.ressources;
 import fr.insa.projetbanque.DTO.CarteDTO;
 import fr.insa.projetbanque.exeption.ProcessExeption;
 import fr.insa.projetbanque.services.CarteService;
+import fr.insa.projetbanque.services.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("cartes")
-public class CarteRessource {
+public class CarteRessource extends CommonService {
     @Autowired
     CarteService carteService;
 

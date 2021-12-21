@@ -4,6 +4,7 @@ import fr.insa.projetbanque.DTO.AgenceDTO;
 import fr.insa.projetbanque.exeption.ProcessExeption;
 import fr.insa.projetbanque.models.Agence;
 import fr.insa.projetbanque.services.AgenceService;
+import fr.insa.projetbanque.services.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("agences")
-public class AgenceRessource {
+public class AgenceRessource extends CommonService {
     @Autowired
     AgenceService agenceService;
+
 
     @GetMapping()
     public List<AgenceDTO> getAllAgence(){
@@ -25,4 +27,5 @@ public class AgenceRessource {
         agenceService.validateAgenceModel(agenceDTO);
         return agenceService.saveAgence(agenceDTO);
     }
+
 }

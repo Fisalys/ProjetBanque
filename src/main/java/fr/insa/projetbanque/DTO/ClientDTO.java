@@ -13,5 +13,4 @@ public class ClientDTO implements Serializable {
     private String tel;
     private String mail;
     private String adresse;
-    private Integer idAgence;
 }

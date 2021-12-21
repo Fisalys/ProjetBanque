@@ -3,6 +3,7 @@ package fr.insa.projetbanque.ressources;
 import fr.insa.projetbanque.DTO.CompteDTO;
 import fr.insa.projetbanque.exeption.ProcessExeption;
 import fr.insa.projetbanque.models.Compte;
+import fr.insa.projetbanque.services.CommonService;
 import fr.insa.projetbanque.services.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("comptes")
-public class CompteRessource {
+public class CompteRessource extends CommonService {
     @Autowired
     CompteService compteService;
 
