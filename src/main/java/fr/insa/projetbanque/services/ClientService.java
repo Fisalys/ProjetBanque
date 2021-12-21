@@ -98,4 +98,12 @@ public class ClientService extends CommonService{
         return clientDTO;
     }
 
+    public void deleteClient(ClientDTO clientDTO) throws ProcessExeption {
+        Client c = clientRepository.getById(clientDTO.getId());
+        if(c==null)
+            throw new ProcessExeption(String.format(CLIENT_NOT_FOUND, c.getId()));
+
+        clientRepository.delete(c);
+    }
+
 }

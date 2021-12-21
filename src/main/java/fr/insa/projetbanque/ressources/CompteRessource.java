@@ -24,8 +24,8 @@ public class CompteRessource {
     }
 
     @GetMapping
-    public CompteDTO getCompteByIBAN(@RequestParam String IBAN) throws Exception {
-        return compteService.getCompteByIBAN(IBAN);
+    public CompteDTO getCompteByIBAN(@RequestParam String iban) throws Exception {
+        return compteService.getCompteByIBAN(iban);
     }
 
     @GetMapping("{Numero}")

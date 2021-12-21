@@ -25,6 +25,8 @@ public class Compte {
     private int solde;
     private boolean decouvert;
     private String IBAN;
-    @OneToMany
-    private List<Transaction> transactions;
+    @OneToMany(mappedBy = "cbenef")
+    private List<Transaction> transactionsBenef;
+    @OneToMany(mappedBy = "cemett")
+    private List<Transaction> transactionsEmett;
 }

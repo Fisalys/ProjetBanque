@@ -30,4 +30,9 @@ public class ClientRessource {
         return clientService.getClientByMail(mail);
 
     }
+
+    @DeleteMapping
+    public void deleteClient(@RequestBody  ClientDTO clientDTO) throws ProcessExeption {
+        clientService.deleteClient(clientDTO);
+    }
 }

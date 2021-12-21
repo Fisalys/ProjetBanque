@@ -67,7 +67,7 @@ public class CompteService extends CommonService{
                 .statut(CompteToCreate.getStatut())
                 .solde(CompteToCreate.getSolde())
                 .decouvert(false)
-                .transactions(null)
+                .transactionsBenef(null)
                 .build();
 
         CompteToCreate.setNumero(creerNumero(c));
@@ -84,10 +84,7 @@ public class CompteService extends CommonService{
         Long leftLimit = 10000000000L;
         Long rightLimit = 99999999999L;
         long generatedLong = (long) (Math.random() * (rightLimit - leftLimit));
-        String temp = Long.toString(generatedLong);
-        if(temp.length() == 10)
-            temp = temp+"0";
-        return temp;
+        return Long.toString(generatedLong);
     }
 
     public String creerIBAN(CompteDTO compteDTO) throws ProcessExeption {
