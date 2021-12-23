@@ -25,7 +25,7 @@ public class CompteRessource extends CommonService {
         return compteService.getCompteByIban(iban);
     }
 
-    @GetMapping("{Numero}")
+    @GetMapping("{numero}")
     public CompteDTO getCompteByNumero(@PathVariable("Numero") String numero) throws ProcessExeption {
         Compte compte = compteService.getCompteByNumero(numero);
         CompteDTO dto = CompteDTO.builder()
