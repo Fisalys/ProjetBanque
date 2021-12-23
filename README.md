@@ -15,5 +15,5 @@ https://github.com/Fisalys/ProjetBanque/blob/master/STILLATUS%20Julien%20KWIATEK
 
 ## Schéma Base de Donéees
 
-!(https://github.com/Fisalys/ProjetBanque/blob/master/schemaBDD.png?raw=true)
+![alt text](https://github.com/Fisalys/ProjetBanque/blob/master/schemaBDD.png?raw=true)
 
