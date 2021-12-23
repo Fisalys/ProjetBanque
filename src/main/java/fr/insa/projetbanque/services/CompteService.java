@@ -41,8 +41,6 @@ public class CompteService extends CommonService{
         return dto;
     }
 
-
-
     public Compte getCompteByNumero(String numero) throws ProcessExeption
     {
         Compte compte = compteRepository.findCompteByNumero(numero);
@@ -73,7 +71,7 @@ public class CompteService extends CommonService{
         CompteToCreate.setIban(c.getIban());
         return CompteToCreate;
     }
-
+    // permet de creer un numéro à 11 caractères aléatoirement
     public String creerNumero(Compte c)
     {
         Long leftLimit = 10000000000L;
@@ -81,7 +79,7 @@ public class CompteService extends CommonService{
         long generatedLong = (long) (Math.random() * (rightLimit - leftLimit));
         return Long.toString(generatedLong);
     }
-
+    // permet de calculer iban d'un compte
     public String creerIban(CompteDTO compteDTO) throws ProcessExeption {
 
         String codeBanque = "30076";
@@ -107,35 +105,29 @@ public class CompteService extends CommonService{
         NotValidExeption e = new NotValidExeption();
 
         if(compteToCreate == null) {
-            System.out.println("testNull");
             e.getMessages().add("CompteModel : Null");
         }else{
 
             if(compteToCreate.getStatut() == null || compteToCreate.getStatut().isBlank()) {
                 e.getMessages().add("statut est vide");
-                System.out.println("testStatus");
 
             }else if(!compteToCreate.getStatut().equals("externe") && !compteToCreate.getStatut().equals("interne")) {
                 e.getMessages().add("statut incorrect");
-                System.out.println("testSpagethi");
             }
-
             if(compteToCreate.getSolde() < 0) {
                 e.getMessages().add("solde incorrect");
-                System.out.println("testFourchette");
             }
         }
 
         if(!e.getMessages().isEmpty())
             throw e;
     }
-
+    // permet de modifier le solde d'un compte
     public CompteDTO modifierCompte(CompteDTO compteDTO) throws ProcessExeption {
         Compte compte = compteRepository.findCompteByNumero(compteDTO.getNumero());
         compte.setSolde(compteDTO.getSolde());
         compteRepository.save(compte);
         return compteDTO;
-
     }
 
     public CompteDTO modifierCompte(String numero,String statut)

@@ -11,5 +11,4 @@ import java.util.List;
 public interface AgenceRepository extends JpaRepository<Agence, Integer> {
 
     List<Agence> findAgenceByClient(Client c);
-
 }

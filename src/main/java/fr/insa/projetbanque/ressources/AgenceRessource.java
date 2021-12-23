@@ -15,7 +15,6 @@ public class AgenceRessource extends CommonService {
     @Autowired
     AgenceService agenceService;
 
-
     @GetMapping()
     public List<AgenceDTO> getAllAgence(){
         return  this.agenceService.getAllAgence();

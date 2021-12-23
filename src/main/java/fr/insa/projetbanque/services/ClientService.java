@@ -13,7 +13,6 @@ public class ClientService extends CommonService{
 
     public static final String CLIENT_NOT_FOUND = "Client non trouvé avec l'id : %s";
 
-
     @Autowired
     ClientRepository clientRepository;
 
@@ -22,7 +21,6 @@ public class ClientService extends CommonService{
         Client client = clientRepository.findById(id).orElseThrow(()-> new ProcessExeption(String.format(CLIENT_NOT_FOUND, id)));
         return client;
     }
-
 
     public ClientDTO saveClient(ClientDTO ClientToCreate) throws ProcessExeption
     {

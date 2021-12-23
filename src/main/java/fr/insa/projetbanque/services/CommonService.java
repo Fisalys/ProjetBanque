@@ -5,7 +5,7 @@ import fr.insa.projetbanque.exeptions.ProcessExeption;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
+// permet de gérer l'affichage des erreurs
 public class CommonService {
 
     @ExceptionHandler(NotValidExeption.class)

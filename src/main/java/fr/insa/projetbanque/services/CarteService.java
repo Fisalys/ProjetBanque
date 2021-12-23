@@ -67,13 +67,9 @@ public class CarteService extends CommonService{
                 e.getMessages().add("Numero de carte est vide");
             else if(carteToCreate.getNumero().length() != 16)
                 e.getMessages().add("Numero de carte invalide");
-
-
             if(carteToCreate.getMdp() == null || carteToCreate.getMdp().isBlank())
                 e.getMessages().add("Mot de passe est vide");
         }
-
-
 
         if(!e.getMessages().isEmpty())
             throw e;

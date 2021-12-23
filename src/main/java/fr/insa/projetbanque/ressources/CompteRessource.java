@@ -14,7 +14,6 @@ public class CompteRessource extends CommonService {
     @Autowired
     CompteService compteService;
 
-
     @PostMapping
     public CompteDTO createCompte(@RequestBody CompteDTO compteDTO) throws ProcessExeption {
         compteService.validateCompteModel(compteDTO);
@@ -44,7 +43,6 @@ public class CompteRessource extends CommonService {
     {
         return compteService.modifierCompte(numero, statut);
     }
-
 
     @DeleteMapping
     public void deleteCompte(@RequestParam String numero) throws ProcessExeption {

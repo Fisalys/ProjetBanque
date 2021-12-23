@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
 
-
     List<Transaction> findTransactionsByCbenefOrCemett(Compte cbenef, Compte cemett);
 }
