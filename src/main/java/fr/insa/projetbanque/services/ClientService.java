@@ -79,7 +79,16 @@ public class ClientService extends CommonService{
             client.setAdresse(clientDTO.getAdresse());
 
         clientRepository.save(client);
-        return clientDTO;
+        ClientDTO dto = ClientDTO.builder()
+                .nom(client.getNom())
+                .prenom(client.getPrenom())
+                .adresse(client.getAdresse())
+                .mail(client.getMail())
+                .id(client.getId())
+                .age(client.getAge())
+                .tel(client.getTel())
+                .build();
+        return dto;
     }
 
     public ClientDTO getClientByNomAndPrenom(String nom, String prenom) throws ProcessExeption {

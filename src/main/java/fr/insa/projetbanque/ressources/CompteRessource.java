@@ -18,7 +18,6 @@ public class CompteRessource extends CommonService {
     public CompteDTO createCompte(@RequestBody CompteDTO compteDTO) throws ProcessExeption {
         compteService.validateCompteModel(compteDTO);
         return compteService.saveCompte(compteDTO);
-
     }
 
     @GetMapping
@@ -38,14 +37,14 @@ public class CompteRessource extends CommonService {
         return dto;
     }
 
-    @PutMapping
-    public CompteDTO modifierCompte(@RequestParam String numero, @RequestBody String statut)
+    @PutMapping("{numero}")
+    public CompteDTO modifierCompte(@PathVariable String numero, @RequestParam String statut)
     {
         return compteService.modifierCompte(numero, statut);
     }
 
-    @DeleteMapping
-    public void deleteCompte(@RequestParam String numero) throws ProcessExeption {
+    @DeleteMapping("{numero}")
+    public void deleteCompte(@PathVariable String numero) throws ProcessExeption {
         compteService.deleteCompte(numero);
     }
 }
