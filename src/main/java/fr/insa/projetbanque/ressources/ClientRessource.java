@@ -38,8 +38,8 @@ public class ClientRessource extends CommonService {
         return clientService.modifierCLient(clientDTO);
     }
 
-    @DeleteMapping
-    public void deleteClient(@RequestBody  ClientDTO clientDTO) throws ProcessExeption {
-        clientService.deleteClient(clientDTO);
+    @DeleteMapping("{id}")
+    public void deleteClient(@PathVariable  Integer id) throws ProcessExeption {
+        clientService.deleteClient(id);
     }
 }

@@ -92,13 +92,13 @@
 					"response": []
 				},
 				{
-					"name": "DeleteClient",
+					"name": "ModifierClient",
 					"request": {
-						"method": "DELETE",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"nom\": \"Test1\",\r\n    \"prenom\": \"TEST\",\r\n    \"age\": 20,\r\n    \"tel\": \"0765659137\",\r\n    \"mail\": \"test@test.com\",\r\n    \"adresse\": \"test rue du test, TestVille\",\r\n    \"idAgence\": 1\r\n}",
+							"raw": "{\r\n    \"id\":1,\r\n    \"nom\":\"TestModif\",\r\n    \"prenom:\":\"Test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -120,13 +120,13 @@
 					"response": []
 				},
 				{
-					"name": "ModifierClient",
+					"name": "DeleteClient",
 					"request": {
-						"method": "PUT",
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\":1,\r\n    \"nom\":\"TestModif\",\r\n    \"prenom:\":\"Test\"\r\n}",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nom\": \"Test1\",\r\n    \"prenom\": \"TEST\",\r\n    \"age\": 20,\r\n    \"tel\": \"0765659137\",\r\n    \"mail\": \"test@test.com\",\r\n    \"adresse\": \"test rue du test, TestVille\",\r\n    \"idAgence\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -260,26 +260,6 @@
 					"response": []
 				},
 				{
-					"name": "DeleteCompte",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/comptes/25363821016",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"comptes",
-								"25363821016"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "ModifierCompte",
 					"request": {
 						"method": "PUT",
@@ -300,6 +280,26 @@
 									"key": "statut",
 									"value": "externe"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCompte",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/comptes/25363821016",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comptes",
+								"25363821016"
 							]
 						}
 					},
