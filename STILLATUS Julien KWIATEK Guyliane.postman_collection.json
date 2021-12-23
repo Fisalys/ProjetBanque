@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "511a4b95-1379-42a7-8ed6-cf99cfaeebed",
+		"name": "BBDBANQUE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "CreateClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nom\": \"Test4\",\r\n   \"prenom\": \"TestDemo7\",\r\n   \"age\": 20,\r\n   \"tel\": \"076899137\",\r\n   \"mail\": \"test@gmail.com\",\r\n   \"adresse\": \"test rue du test, TestVille\",\r\n   \"idAgence\": 1\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetClientByNomAndPrenom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clients?nom=Test1&prenom=TEST",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clients"
+							],
+							"query": [
+								{
+									"key": "nom",
+									"value": "Test1"
+								},
+								{
+									"key": "prenom",
+									"value": "TEST"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetClientByMail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clients/mail?mail=test@test.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clients",
+								"mail"
+							],
+							"query": [
+								{
+									"key": "mail",
+									"value": "test@test.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteClient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nom\": \"Test1\",\r\n    \"prenom\": \"TEST\",\r\n    \"age\": 20,\r\n    \"tel\": \"0765659137\",\r\n    \"mail\": \"test@test.com\",\r\n    \"adresse\": \"test rue du test, TestVille\",\r\n    \"idAgence\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModifierClient",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"nom\":\"TestModif\",\r\n    \"prenom:\":\"Test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agence",
+			"item": [
+				{
+					"name": "CreateAgences",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":0,\r\n    \"adresse\": \"Test rue du Test\",\r\n    \"code\": \"07839\",\r\n    \"listIdClient\":[ 1]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/agences",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agences"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Compte",
+			"item": [
+				{
+					"name": "CreateCompte",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 0,\r\n    \"numero\": null,\r\n    \"listIdClient\":[1 ],\r\n    \"statut\":\"interne\",\r\n    \"solde\":1000,\r\n    \"IBAN\":null\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/comptes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comptes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCompteByIBAN",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/comptes/?IBAN=FR7630076078392536382101660",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comptes",
+								""
+							],
+							"query": [
+								{
+									"key": "IBAN",
+									"value": "FR7630076078392536382101660"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCompteByNumero",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/comptes/40516767256",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comptes",
+								"40516767256"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCompte",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/comptes/25363821016",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comptes",
+								"25363821016"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModifierCompte",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/comptes/70472391993?statut=externe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comptes",
+								"70472391993"
+							],
+							"query": [
+								{
+									"key": "statut",
+									"value": "externe"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carte",
+			"item": [
+				{
+					"name": "CreateCarte",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\":\"1234567891234456\",\r\n    \"plafond\":1000,\r\n    \"mdp\":\"Test\",\r\n    \"idCompte\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cartes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cartes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCarteByNumero",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cartes?numero=1234567891234567",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cartes"
+							],
+							"query": [
+								{
+									"key": "numero",
+									"value": "1234567891234567"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCarte",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cartes?numero=1234567891234567",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cartes"
+							],
+							"query": [
+								{
+									"key": "numero",
+									"value": "1234567891234567"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "CreateTransactions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2021-01-21\",\r\n    \"benefId\":1,\r\n    \"emettId\":2,\r\n    \"montant\": 600,\r\n    \"methode\":\"virement\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTransactionsByCompte",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/transactions?cemett=76120309340&cbenef=76120309340",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "cemett",
+									"value": "76120309340"
+								},
+								{
+									"key": "cbenef",
+									"value": "76120309340"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
