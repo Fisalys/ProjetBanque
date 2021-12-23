@@ -105,33 +105,36 @@ public class TransactionService {
         if(transactionDTO == null) {
             System.out.println("null");
             e.getMessages().add("transaction est null");
+        }else
+        {
+            Compte emett =  compteService.getCompteById(transactionDTO.getEmettId());
+            Compte benef = compteService.getCompteById(transactionDTO.getBenefId());
+            if(transactionDTO.getDate() == null) {
+                System.out.println("date");
+                e.getMessages().add("date est vide");
+            }
+            if(transactionDTO.getMontant() == 0) {
+                System.out.println("montant");
+                e.getMessages().add("montant est égale à 0");
+            }
+            if(transactionDTO.getMontant() > emett.getSolde() && !emett.isDecouvert()) {
+                System.out.println("decouvert");
+                e.getMessages().add("Montant superieur au solde");
+            }
+            if(transactionDTO.getMethode() == null || transactionDTO.getMethode().isBlank()) {
+                System.out.println("methode");
+                e.getMessages().add("Methode est vide");
+            }else if(!transactionDTO.getMethode().equals("virement") && !transactionDTO.getMethode().equals("carte")) {
+                System.out.println("methode2");
+                e.getMessages().add("methode inconnu");
+            }
+
+            if(benef.getStatut().equals("externe")) {
+                System.out.println("status");
+                e.getMessages().add("compte externe");
+            }
         }
-        Compte emett =  compteService.getCompteById(transactionDTO.getEmettId());
-        Compte benef = compteService.getCompteById(transactionDTO.getBenefId());
-        if(transactionDTO.getDate() == null) {
-            System.out.println("date");
-            e.getMessages().add("date est vide");
-        }
-        if(transactionDTO.getMontant() == 0) {
-            System.out.println("montant");
-            e.getMessages().add("montant est égale à 0");
-        }
-        if(transactionDTO.getMontant() > emett.getSolde() && !emett.isDecouvert()) {
-            System.out.println("decouvert");
-            e.getMessages().add("Montant superieur au solde");
-        }
-        if(transactionDTO.getMethode() == null || transactionDTO.getMethode().isBlank()) {
-            System.out.println("methode");
-            e.getMessages().add("Methode est vide");
-        }
-        if(!transactionDTO.getMethode().equals("virement") && !transactionDTO.getMethode().equals("carte")) {
-            System.out.println("methode2");
-            e.getMessages().add("methode inconnu");
-        }
-        if(benef.getStatut().equals("externe")) {
-            System.out.println("status");
-            e.getMessages().add("compte externe");
-        }
+
 
         if(!e.getMessages().isEmpty())
             throw e;

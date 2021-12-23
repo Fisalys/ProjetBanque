@@ -39,6 +39,12 @@ public class CompteRessource extends CommonService {
         return dto;
     }
 
+    @PutMapping
+    public CompteDTO modifierCompte(@RequestParam String numero, @RequestBody String statut)
+    {
+        return compteService.modifierCompte(numero, statut);
+    }
+
 
     @DeleteMapping
     public void deleteCompte(@RequestParam String numero) throws ProcessExeption {

@@ -59,13 +59,21 @@ public class CarteService extends CommonService{
     public void validateCarteModel(CarteDTO carteToCreate) throws NotValidExeption
     {
         NotValidExeption e = new NotValidExeption();
+        if(carteToCreate == null)
+            e.getMessages().add("CarteModel : Null");
+        else
+        {
+            if(carteToCreate.getNumero() == null || carteToCreate.getNumero().isBlank())
+                e.getMessages().add("Numero de carte est vide");
+            else if(carteToCreate.getNumero().length() != 16)
+                e.getMessages().add("Numero de carte invalide");
 
-        if(carteToCreate.getNumero() == null || carteToCreate.getNumero().isBlank())
-            e.getMessages().add("Numero de carte est vide");
-        if(carteToCreate.getNumero().length() != 16)
-            e.getMessages().add("Numero de carte invalide");
-        if(carteToCreate.getMdp() == null || carteToCreate.getMdp().isBlank())
-            e.getMessages().add("Mot de passe est vide");
+
+            if(carteToCreate.getMdp() == null || carteToCreate.getMdp().isBlank())
+                e.getMessages().add("Mot de passe est vide");
+        }
+
+
 
         if(!e.getMessages().isEmpty())
             throw e;

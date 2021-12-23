@@ -60,11 +60,9 @@ public class CompteService extends CommonService{
 
         Compte c = Compte.builder()
                 .client(client)
-                .carte(null)
                 .statut(CompteToCreate.getStatut())
                 .solde(CompteToCreate.getSolde())
                 .decouvert(false)
-                .transactionsBenef(null)
                 .build();
 
         CompteToCreate.setNumero(creerNumero(c));
@@ -111,19 +109,23 @@ public class CompteService extends CommonService{
         if(compteToCreate == null) {
             System.out.println("testNull");
             e.getMessages().add("CompteModel : Null");
+        }else{
+
+            if(compteToCreate.getStatut() == null || compteToCreate.getStatut().isBlank()) {
+                e.getMessages().add("statut est vide");
+                System.out.println("testStatus");
+
+            }else if(!compteToCreate.getStatut().equals("externe") && !compteToCreate.getStatut().equals("interne")) {
+                e.getMessages().add("statut incorrect");
+                System.out.println("testSpagethi");
+            }
+
+            if(compteToCreate.getSolde() < 0) {
+                e.getMessages().add("solde incorrect");
+                System.out.println("testFourchette");
+            }
         }
-        if(compteToCreate.getStatut() == null || compteToCreate.getStatut().isBlank()) {
-            e.getMessages().add("statut est vide");
-            System.out.println("testStatus");
-        }
-        if(!compteToCreate.getStatut().equals("externe") && !compteToCreate.getStatut().equals("interne")) {
-            e.getMessages().add("statut incorrect");
-            System.out.println("testSpagethi");
-        }
-        if(compteToCreate.getSolde() < 0) {
-            e.getMessages().add("solde incorrect");
-            System.out.println("testFourchette");
-        }
+
         if(!e.getMessages().isEmpty())
             throw e;
     }
@@ -134,6 +136,21 @@ public class CompteService extends CommonService{
         compteRepository.save(compte);
         return compteDTO;
 
+    }
+
+    public CompteDTO modifierCompte(String numero,String statut)
+    {
+        Compte compte = compteRepository.findCompteByNumero(numero);
+        if(statut != null)
+            compte.setStatut(statut);
+        compteRepository.save(compte);
+        return CompteDTO.builder().id(compte.getId())
+                .decouvert(compte.isDecouvert())
+                .numero(compte.getNumero())
+                .iban(compte.getIban())
+                .solde(compte.getSolde())
+                .statut(compte.getStatut())
+                .build();
     }
 
     public void deleteCompte(String numero) throws ProcessExeption {

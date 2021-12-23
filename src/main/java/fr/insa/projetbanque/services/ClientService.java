@@ -45,21 +45,43 @@ public class ClientService extends CommonService{
 
         if(clientToCreate == null)
             e.getMessages().add("ClientModel : Null");
-        if(clientToCreate.getNom() == null || clientToCreate.getNom().isBlank())
-            e.getMessages().add("nom est vide");
-        if(clientToCreate.getPrenom() == null || clientToCreate.getPrenom().isBlank())
-            e.getMessages().add("prenom est vide");
-        if(clientToCreate.getAge() == 0)
-            e.getMessages().add("age est vide");
-        if(clientToCreate.getTel() == null || clientToCreate.getTel().isBlank())
-            e.getMessages().add("tel est vide");
-        if(clientToCreate.getMail() == null || clientToCreate.getMail().isBlank())
-            e.getMessages().add("mail est vide");
-        if(clientToCreate.getAdresse() == null || clientToCreate.getAdresse().isBlank())
-            e.getMessages().add("adresse est vide");
+        else{
+            if(clientToCreate.getNom() == null || clientToCreate.getNom().isBlank())
+                e.getMessages().add("nom est vide");
+            if(clientToCreate.getPrenom() == null || clientToCreate.getPrenom().isBlank())
+                e.getMessages().add("prenom est vide");
+            if(clientToCreate.getAge() == 0)
+                e.getMessages().add("age est vide");
+            if(clientToCreate.getTel() == null || clientToCreate.getTel().isBlank())
+                e.getMessages().add("tel est vide");
+            if(clientToCreate.getMail() == null || clientToCreate.getMail().isBlank())
+                e.getMessages().add("mail est vide");
+            if(clientToCreate.getAdresse() == null || clientToCreate.getAdresse().isBlank())
+                e.getMessages().add("adresse est vide");
+        }
 
         if(!e.getMessages().isEmpty())
             throw e;
+    }
+
+    public ClientDTO modifierCLient(ClientDTO clientDTO)
+    {
+        Client client = clientRepository.getById(clientDTO.getId());
+        if(clientDTO.getNom() != null)
+            client.setNom(clientDTO.getNom());
+        if(clientDTO.getPrenom() != null)
+            client.setPrenom(clientDTO.getPrenom());
+        if(clientDTO.getAge() != 0)
+            client.setAge(clientDTO.getAge());
+        if(clientDTO.getTel() != null)
+            client.setTel(clientDTO.getTel());
+        if(clientDTO.getMail() != null)
+            client.setMail(clientDTO.getMail());
+        if(clientDTO.getAdresse() != null)
+            client.setAdresse(clientDTO.getAdresse());
+
+        clientRepository.save(client);
+        return clientDTO;
     }
 
     public ClientDTO getClientByNomAndPrenom(String nom, String prenom) throws ProcessExeption {
@@ -77,6 +99,7 @@ public class ClientService extends CommonService{
                 .build();
         return clientDTO;
     }
+
     public ClientDTO getClientByMail(String mail) throws ProcessExeption {
         Client c = clientRepository.findClientByMail(mail);
         if(c == null)

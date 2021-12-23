@@ -15,6 +15,7 @@ public class CompteDTO implements Serializable {
     private String numero;
     private List<Integer> listIdClient;
     private String statut; // externe / interne
+    private boolean decouvert;
     private int solde;
     private String iban;
 }

@@ -52,12 +52,13 @@ public class AgenceService extends CommonService{
 
         if(agenceToCreate ==  null)
             e.getMessages().add("AgenceModel : null");
-        if(agenceToCreate.getAdresse() == null || agenceToCreate.getAdresse().isBlank())
-            e.getMessages().add("Adresse est vide");
-        if(agenceToCreate.getCode() == null || agenceToCreate.getAdresse().isBlank())
-        {
-            e.getMessages().add("Code est null");
-            if(agenceToCreate.getCode().length() != 5)
+        else {
+            if(agenceToCreate.getAdresse() == null || agenceToCreate.getAdresse().isBlank())
+                e.getMessages().add("Adresse est vide");
+            if(agenceToCreate.getCode() == null || agenceToCreate.getAdresse().isBlank())
+            {
+                e.getMessages().add("Code est null");
+            }else if(agenceToCreate.getCode().length() != 5)
                 e.getMessages().add("Code n'est pas sur 5 caractère");
         }
 
